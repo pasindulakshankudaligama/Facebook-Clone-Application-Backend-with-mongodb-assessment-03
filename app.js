@@ -1,24 +1,25 @@
-const express = require("express");
-const { default: mongoose } = require("mongoose");
-const item = require("./routes/Item");
+const express = require('express')
+const mongoose = require('mongoose')
+const users = require('./routes/users')
+const post = require('./routes/post')
 
-const app = express();
-const port = 5000;
+const app = express()
+const port = 4000
 
-const url ='mongodb://localhost/express'
+const url = 'mongodb://localhost/express'
 
-mongoose.connect(url,{useNewUrlParser:true})
+mongoose.connect(url, {useNewUrlParser: true})
 const con = mongoose.connection
 
-con.on("open",()=>{
-  console.log("mongoDB Connected")
+con.on('open', () => {
+    console.log("MongoDB Connected")
 })
 
-app.use(express.json());
+app.use(express.json())
+app.use('/users', users)
+const post = require('./routes/post')
 
-app.use("/item", item);
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-  });
-  
+    console.log(`app starting on ${port}`);
+})
