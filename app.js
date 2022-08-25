@@ -17,7 +17,7 @@ con.on('open', () => {
 
 app.use(express.json())
 app.use('/users', users)
-const post = require('./routes/post')
+app.use('/post', post)
 
 
 app.listen(port, () => {
